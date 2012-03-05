@@ -1,7 +1,7 @@
-task :default => [:tmp_dirs, :update, :command_t, :link]
+task :default => [:tmp_dirs, :update, :command_t, :autotag, :link]
 
 desc %(Bring bundles up to date)
-task :update do
+task :update => :autotag do
   sh "git submodule sync >/dev/null"
   sh "git submodule update --init"
 end
@@ -44,6 +44,15 @@ task :macvim_check do
   if mvim = which('mvim') and '/usr/bin/vim' == which('vim')
     warn color('Warning:', 31) + " You have MacVim installed, but `vim` still opens system Vim."
     warn "To use MacVim version when you invoke `vim`:  " + color("$ ln -s mvim #{File.dirname(mvim)}/vim", 37)
+  end
+end
+
+desc %(Add the autotag plugin)
+task :autotag => :macvim_check do
+  vim = which('mvim') || which('vim') or abort "vim not found on your system"
+  sh "mkdir -p bundle/autotag/plugin"
+  Dir.chdir "bundle/autotag/plugin" do
+    sh "curl https://raw.github.com/craigemery/dotFiles/master/vim/plugin/autotag.vim -o autotag.vim"
   end
 end
 
