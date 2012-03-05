@@ -33,8 +33,8 @@ set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
 " List chars
 set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.            " show trailing spaces as dots
+set listchars=tab:»-              " show tabs as dots
+set listchars+=trail:◘            " show trailing spaces as dots
 set listchars+=extends:>          " The character to show in the last column when wrap is
                                   " off and the line continues beyond the right of the screen
 set listchars+=precedes:<         " The character to show in the first column when wrap is
@@ -121,17 +121,21 @@ set directory=~/.vim/_temp      " where to put swap files.
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
 
-  " Start the status line
-  set statusline=%f\ %m\ %r
-
+  set statusline=%f\ \ \ %m
   " Add fugitive
-  set statusline+=%{fugitive#statusline()}
+  set statusline+=\ \ \ %{fugitive#statusline()}
 
-  " Finish the statusline
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
+  " Go to right side
+  set statusline+=%=
+
+  " Set Line number
+  set statusline+=L:%l\ (%p%%)
+
+  " [RO] marker
+  set statusline+=\ %r
 endif
+
+" Remove all trailing whitespaces for certain file types
+autocmd FileType c,cpp,java,php,perl,ruby,html,javascript,scss,css,haml,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 let g:CommandTMaxHeight=10
