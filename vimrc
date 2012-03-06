@@ -144,3 +144,5 @@ autocmd BufWritePost *
       \ endif
 
 let g:CommandTMaxHeight=10
+
+set foldmethod=syntax
