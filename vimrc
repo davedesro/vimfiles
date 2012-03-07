@@ -77,7 +77,7 @@ set scrolloff=3
 map Q gq
 
 " clear the search buffer when hitting return
-:nnoremap <Esc> :nohlsearch<cr>
+:nnoremap <CR> :nohlsearch<cr>
 
 let mapleader=","
 

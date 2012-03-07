@@ -1,7 +1,7 @@
-task :default => [:tmp_dirs, :update, :command_t, :autotag, :link]
+task :default => [:tmp_dirs, :update, :command_t, :autotag, :conque, :link]
 
 desc %(Bring bundles up to date)
-task :update => :autotag do
+task :update => [ :autotag, :conque ] do
   sh "git submodule sync >/dev/null"
   sh "git submodule update --init"
 end
@@ -44,6 +44,18 @@ task :macvim_check do
   if mvim = which('mvim') and '/usr/bin/vim' == which('vim')
     warn color('Warning:', 31) + " You have MacVim installed, but `vim` still opens system Vim."
     warn "To use MacVim version when you invoke `vim`:  " + color("$ ln -s mvim #{File.dirname(mvim)}/vim", 37)
+  end
+end
+
+desc %(Add the trunk of conque)
+task :conque => :macvim_check do
+  svn = which('svn') or abort "svn not found on your system"
+  if File.directory?("bundle/conque")
+    Dir.chdir "bundle/conque" do
+      sh "svn update"
+    end
+  else
+    sh "svn checkout http://conque.googlecode.com/svn/trunk/ bundle/conque"
   end
 end
 
