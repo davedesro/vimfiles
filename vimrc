@@ -77,7 +77,7 @@ set scrolloff=3
 map Q gq
 
 " clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+:nnoremap <Esc> :nohlsearch<cr>
 
 let mapleader=","
 
@@ -146,3 +146,9 @@ autocmd BufWritePost *
 let g:CommandTMaxHeight=10
 
 set foldmethod=syntax
+set foldlevel=99
+
+" nmap rr :call RunRubyCurrentFileConque()
+nmap <leader>s :call RunRspecCurrentFileConque()
+nmap <leader>l :call RunRspecCurrentLineConque()
+nmap <leader>RR :call RunRakeConque()
