@@ -135,9 +135,6 @@ if has("statusline") && !&cp
   set statusline+=\ %r
 endif
 
-" Remove all trailing whitespaces for certain file types
-autocmd FileType c,cpp,java,php,perl,ruby,html,javascript,scss,css,haml,python autocmd BufWritePre <buffer> :%s/\s\+$//e
-
 autocmd BufWritePost *
       \ if filereadable('tags') |
       \   call system('ctags -a '.expand('%')) |
