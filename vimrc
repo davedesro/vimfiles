@@ -153,3 +153,6 @@ nmap <leader>RR :call RunRakeConque()
 " Conque
 let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
 let g:ConqueTerm_InsertOnEnter = 1 " Enter conque in insert mode
+
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
