@@ -43,3 +43,6 @@
 [submodule "bundle/rspec"]
 	path = bundle/rspec
 	url = git@github.com:Pliny/vim-ruby-conque.git
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git

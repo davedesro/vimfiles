@@ -145,11 +145,9 @@ let g:CommandTMaxHeight=10
 set foldmethod=syntax
 set foldlevel=99
 
-" nmap rr :call RunRubyCurrentFileConque()
-nmap <leader>s :call RunRspecCurrentFileConque()
-nmap <leader>l :call RunRspecCurrentLineConque()
-nmap <leader>RR :call RunRakeConque()
-
 " Conque
 let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
-let g:ConqueTerm_InsertOnEnter = 1 " Enter conque in insert mode
+" let g:ConqueTerm_InsertOnEnter = 1 " Enter conque in insert mode
+
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
