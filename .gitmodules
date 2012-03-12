@@ -34,12 +34,12 @@
 [submodule "bundle/tcomment"]
 	path = bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim.git
-[submodule "bundle/rspec"]
-	path = bundle/rspec
-	url = https://github.com/skwp/vim-ruby-conque.git
 [submodule "bundle/matchit"]
 	path = bundle/matchit
 	url = https://github.com/benjifisher/matchit.zip.git
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/rspec"]
+	path = bundle/rspec
+	url = git@github.com:Pliny/vim-ruby-conque.git
