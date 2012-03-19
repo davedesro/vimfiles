@@ -70,6 +70,8 @@ if has("autocmd")
     \| exe "normal! g`\"" | endif
 endif
 
+set autowrite " Write the contents of the file on buffer switching
+
 " provide some context when editing
 set scrolloff=3
 
@@ -95,6 +97,9 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " ignore Rubinius, Sass cache files
 set wildignore+=*.rbc,*.scssc,*.sassc
+
+" Ignore non-development rails area
+set wildignore+=public/**,coverage/**,log/**,tmp/**
 
 nnoremap <leader><leader> <c-^>
 
