@@ -98,9 +98,8 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " ignore Rubinius, Sass cache files
 set wildignore+=tmp/**,*.rbc,.rbx,*.scssc,*.sassc
-
 " Ignore non-development rails area
-set wildignore+=public/**,coverage/**,log/**,tmp/**
+set wildignore+=public/**,coverage/**,log/**
 
 nnoremap <leader><leader> <c-^>
 
@@ -148,3 +147,14 @@ autocmd BufWritePost *
 
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=4
+
+set foldmethod=syntax
+set foldlevel=99
+
+" Conque
+let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
+" let g:ConqueTerm_InsertOnEnter = 1 " Enter conque in insert mode
+
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
+
