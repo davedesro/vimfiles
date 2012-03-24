@@ -9,6 +9,7 @@ end
 desc %(Update each submodule from its upstream)
 task :submodule_pull do
   system %[git submodule foreach '
+        git checkout master &&
         git pull --quiet --ff-only --no-rebase origin master &&
         git log --no-merges --pretty=format:"%s %Cgreen(%ar)%Creset" --date=relative master@{1}..
         echo
