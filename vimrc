@@ -19,6 +19,7 @@ set nonumber
 set ruler       " show the cursor position all the time
 set cursorline
 set showcmd     " display incomplete commands
+set shell=bash  " avoids munging PATH under zsh
 
 " Allow backgrounding buffers without writing them, and remember marks/undo
 " for backgrounded buffers
@@ -48,7 +49,7 @@ set smartcase                     " ... unless they contain at least one capital
 function s:setupWrapping()
   set wrap
   set wrapmargin=2
-  set textwidth=72
+  set textwidth=80
 endfunction
 
 if has("autocmd")
@@ -96,7 +97,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " ignore Rubinius, Sass cache files
-set wildignore+=*.rbc,*.scssc,*.sassc
+set wildignore+=tmp/**,*.rbc,.rbx,*.scssc,*.sassc
 
 " Ignore non-development rails area
 set wildignore+=public/**,coverage/**,log/**,tmp/**
@@ -146,13 +147,4 @@ autocmd BufWritePost *
       \ endif
 
 let g:CommandTMaxHeight=10
-
-set foldmethod=syntax
-set foldlevel=99
-
-" Conque
-let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
-" let g:ConqueTerm_InsertOnEnter = 1 " Enter conque in insert mode
-
-" Gundo
-nnoremap <F5> :GundoToggle<CR>
+let g:CommandTMinHeight=4
