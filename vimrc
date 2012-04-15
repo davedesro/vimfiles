@@ -46,6 +46,10 @@ set incsearch                     " incremental searching
 set ignorecase                    " searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 
+"" Misc
+set relativenumber
+set undofile
+
 function s:setupWrapping()
   set wrap
   set wrapmargin=2
@@ -69,6 +73,8 @@ if has("autocmd")
   " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
+
+  au FocusLost * :wa
 endif
 
 set autowrite " Write the contents of the file on buffer switching
@@ -122,6 +128,7 @@ map <Down>  :echo "no!"<cr>
 
 set backupdir=~/.vim/_backup    " where to put backup files.
 set directory=~/.vim/_temp      " where to put swap files.
+set undodir=~/.vim/_undo        " where to put undo files.
 
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
@@ -153,7 +160,6 @@ set foldlevel=99
 
 " Conque
 let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
-" let g:ConqueTerm_InsertOnEnter = 1 " Enter conque in insert mode
 
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
