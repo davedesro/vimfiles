@@ -165,3 +165,8 @@ let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
 
+" json
+map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+
+" turn syntax off for large files
+autocmd BufWinEnter * if line2byte(line("$") + 1) > 70000 | syntax clear | endif
