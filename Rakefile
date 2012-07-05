@@ -1,7 +1,7 @@
 task :default => [:tmp_dirs, :update, :command_t, :autotag, :conque, :link]
 
 desc %(Bring bundles up to date)
-task :update => [ :autotag, :conque ] do
+task :update => [ :conque ] do
   sh "git submodule sync >/dev/null"
   sh "git submodule update --init"
 end
