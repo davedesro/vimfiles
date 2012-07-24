@@ -170,3 +170,6 @@ map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " turn syntax off for large files
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 70000 | syntax clear | endif
+
+" Kill buffers, keep window state
+nmap ,d :b#<bar>bd#<CR>
