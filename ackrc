@@ -1,0 +1,5 @@
+--type-add=ruby=.haml
+--type-add=css=.scss,sass
+--type-add=js=.coffee
+--smart-case
+--ignore-dir=.jhw-cache
