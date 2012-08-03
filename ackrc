@@ -3,3 +3,6 @@
 --type-add=js=.coffee
 --smart-case
 --ignore-dir=.jhw-cache
+--ignore-dir=app/assets/maintenance
+--ignore-dir=coverage
+--ignore-dir=tmp
