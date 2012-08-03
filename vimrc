@@ -167,6 +167,9 @@ nnoremap <F5> :GundoToggle<CR>
 
 " json
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+" XML
+au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
 
 " turn syntax off for large files
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 70000 | syntax clear | endif
