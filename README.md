@@ -1,25 +1,26 @@
-Mislav's vim configuration
+Dave's Vim Configuration
 ==========================
 
-Thanks to these guys:
+Originally forked from [Mislav](https://github.com/mislav/vimfiles). This
+initial configuration was chosen because of his [blog post](http://mislav.uniqpath.com/2011/12/vim-revisited/).
 
-* [Gary Bernhardt](http://destroyallsoftware.com),
-* [Drew Neil](http://vimcasts.org),
-* [Tim Pope](http://tbaggery.com),
-* and the [Janus project](https://github.com/carlhuda/janus).
+The configuration uses [Pathogen](https://github.com/tpope/vim-pathogen), git submodules, along with some direct repository connections such as SVN.
 
-My configuration uses [Pathogen](https://github.com/tpope/vim-pathogen) and git submodules.
-(But you don't need to care about any of that.)
+The decision to use plugins are driven by my web development requirements.
+These days these include [Ruby on Rails](https://github.com/rails/rails),
+Javascript/[CoffeeScript](http://coffeescript.org/), [HAML](http://haml.info/), and [SASS](http://sass-lang.com/)
+
+Please let me know if there's a *must have* that I haven't found.
 
 ## Installation:
 
-Prerequisites: ruby, git.
+Prerequisites: ruby, git, vim compiled with Ruby.
 
-1. Move your existing configuration somewhere else:  
+1. Move your existing configuration somewhere else:
    `mv ~/.vim* ~/.gvim* my_backup`
-2. Clone this repo into ".vim":  
-   `git clone https://github.com/mislav/vimfiles ~/.vim`
-3. Go into ".vim" and run "rake":  
+2. Clone this repo into ".vim":
+   `git clone https://github.com/Pliny/vimfiles.git ~/.vim`
+3. Go into ".vim" and run "rake":
    `cd ~/.vim && rake`
 
 This will install "~/.vimrc" and "~/.gvimrc" symlinks that point to
@@ -34,6 +35,8 @@ files inside the ".vim" directory.
 * `,,` switches between two last buffers
 * `<C-j/k/h/l>` switches between windows (no need to prepend `<C-w>`)
 * cursor keys for movement disabled!
+* run rspec tests in editor
+* handy autocomplete features for brackets and blocks
 
 ## Plugins:
 
@@ -47,3 +50,15 @@ files inside the ".vim" directory.
 * haml
 * scss
 * coffee-script
+* conque
+* vim-ruby-conque (custom keybindings originally forked from [zolrath](https://github.com/zolrath/vim-ruby-conque))
+* delimitmate
+* gundo
+* javascript
+* json
+* matchit
+* surround
+* tcomment
+* vim-pasta
+* mustache
+* ruby
