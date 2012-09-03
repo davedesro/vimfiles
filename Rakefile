@@ -1,4 +1,4 @@
-task :default => [:tmp_dirs, :update, :command_t, :autotag, :conque, :link]
+task :default => [:tmp_dirs, :update, :command_t, :conque, :link]
 
 desc %(Bring bundles up to date)
 task :update => [ :conque ] do
@@ -66,15 +66,6 @@ task :conque => :macvim_check do
     end
   else
     sh "svn checkout http://conque.googlecode.com/svn/trunk/ bundle/conque"
-  end
-end
-
-desc %(Add the autotag plugin)
-task :autotag => :macvim_check do
-  vim = which('mvim') || which('vim') or abort "vim not found on your system"
-  sh "mkdir -p bundle/autotag/plugin"
-  Dir.chdir "bundle/autotag/plugin" do
-    sh "curl https://raw.github.com/craigemery/dotFiles/master/vim/plugin/autotag.vim -o autotag.vim"
   end
 end
 
