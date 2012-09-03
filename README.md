@@ -1,8 +1,7 @@
 Dave's Vim Configuration
 ==========================
 
-Originally forked from [Mislav](https://github.com/mislav/vimfiles). This
-initial configuration was chosen because of his [blog post](http://mislav.uniqpath.com/2011/12/vim-revisited/).
+Originally forked from [Mislav](https://github.com/mislav/vimfiles) motivated by his [blog post](http://mislav.uniqpath.com/2011/12/vim-revisited/).
 
 The configuration uses [Pathogen](https://github.com/tpope/vim-pathogen), git submodules, along with some direct repository connections such as SVN.
 
