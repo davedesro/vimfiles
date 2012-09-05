@@ -3,7 +3,7 @@ Dave's Vim Configuration
 
 Originally forked from [Mislav](https://github.com/mislav/vimfiles) motivated by his [blog post](http://mislav.uniqpath.com/2011/12/vim-revisited/).
 
-The configuration uses [Pathogen](https://github.com/tpope/vim-pathogen), git submodules, along with some direct repository connections such as SVN.
+The configuration uses [Pathogen](https://github.com/tpope/vim-pathogen) and git submodules.
 
 The decision to use plugins are driven by my web development requirements.
 These days these include [Ruby on Rails](https://github.com/rails/rails),
