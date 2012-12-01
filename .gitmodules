@@ -61,3 +61,6 @@
 [submodule "bundle/conque"]
 	path = bundle/conque
 	url = https://github.com/rson/vim-conque.git
+[submodule "bundle/markdown-folding"]
+	path = bundle/markdown-folding
+	url = https://github.com/nelstrom/vim-markdown-folding
