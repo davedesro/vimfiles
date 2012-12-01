@@ -26,6 +26,9 @@ let g:is_bash=1 " default shell syntax
 " for backgrounded buffers
 set hidden
 
+" Auto-reload buffers when file changed on disk
+set autoread
+
 "" Whitespace
 set nowrap                        " don't wrap lines
 set tabstop=2                     " a tab is two spaces
