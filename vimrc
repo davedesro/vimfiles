@@ -174,6 +174,14 @@ set foldlevel=99
 
 " Conque
 let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
+" Override rspec conque key bindings
+nmap <silent> <Leader>rr :RunRubyCurrentFileConque<CR>
+nmap <silent> <Leader>s :RunRspecCurrentFileConque<CR>
+nmap <silent> <Leader>l :RunRspecCurrentLineConque<CR>
+nmap <silent> <Leader>cl :RunCucumberCurrentLineConque<CR>
+nmap <silent> <Leader>cc :RunCucumberCurrentFileConque<CR>
+nmap <silent> <Leader>RR :RunRakeConque<CR>
+nmap <silent> <Leader>a :RunLastConqueCommand<CR>
 
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
