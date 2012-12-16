@@ -6,7 +6,7 @@ if has("autocmd")
   au FileType python,javascript,coffee colorscheme distinguished
   au FileType ruby colorscheme railscasts
   au FileType sh colorscheme vividchalk
-  au FileType c colorscheme jellybeans
+  au FileType c,cpp colorscheme jellybeans
 endif
 
 set guifont=Menlo\ Regular:h12
