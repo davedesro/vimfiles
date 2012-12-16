@@ -79,6 +79,13 @@ if has("autocmd")
     \| exe "normal! g`\"" | endif
 
   au FocusLost * :wa
+
+  au FileType coffee,python :set foldmethod=indent
+
+  " XML
+  au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+  map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
+
 endif
 
 set autowrite " Write the contents of the file on buffer switching
@@ -188,12 +195,9 @@ nnoremap <F5> :GundoToggle<CR>
 
 " json
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
-" XML
-au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
-map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
 
 " turn syntax off for large files
-autocmd BufWinEnter * if line2byte(line("$") + 1) > 70000 | syntax clear | endif
+" autocmd BufWinEnter * if line2byte(line("$") + 1) > 70000 | syntax clear | endif
 
 " Kill buffers, keep window state
 nmap ,d :b#<bar>bd#<CR>
