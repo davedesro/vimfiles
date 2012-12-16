@@ -1,10 +1,12 @@
 colorscheme solarized
 
 " Set color theme based on file type
-autocmd FileType css,scss,html,xhtml,haml,erb,sass colorscheme guardian
-autocmd FileType python,javascript,coffee colorscheme distinguished
-autocmd FileType ruby colorscheme railscasts
-autocmd FileType sh colorscheme vividchalk
+if has("autocmd")
+  au FileType css,scss,html,xhtml,haml,erb,sass colorscheme guardian
+  au FileType python,javascript,coffee colorscheme distinguished
+  au FileType ruby colorscheme railscasts
+  au FileType sh colorscheme vividchalk
+endif
 
 set guifont=Menlo\ Regular:h12
 set linespace=2
