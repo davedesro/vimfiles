@@ -1,13 +1,17 @@
 Dave's Vim Configuration
 ==========================
 
-Originally forked from [Mislav](https://github.com/mislav/vimfiles) motivated by his [blog post](http://mislav.uniqpath.com/2011/12/vim-revisited/).
+Originally forked from [Mislav](https://github.com/mislav/vimfiles) motivated by his [blog post](http://mislav.uniqpath.com/2011/12/vim-revisited/). I routinely cherry pick his checkins.
 
 The configuration uses [Pathogen](https://github.com/tpope/vim-pathogen) and git submodules.
 
-The decision to use plugins are driven by my web development requirements.
-These days these include [Ruby on Rails](https://github.com/rails/rails),
-Javascript/[CoffeeScript](http://coffeescript.org/), [HAML](http://haml.info/), and [SASS](http://sass-lang.com/)
+The decision to use plugins are driven by my development requirements.
+[Ruby on Rails](https://github.com/rails/rails),
+Javascript/[CoffeeScript](http://coffeescript.org/), [HAML](http://haml.info/), [SASS](http://sass-lang.com/),
+and [C](http://en.wikipedia.org/wiki/C_(programming_language)).
+
+I put effort in making sure all plugins play nicely and are consistent
+indepenedent of language.
 
 Please let me know if there's a *must have* that I haven't found.
 
@@ -36,6 +40,9 @@ files inside the ".vim" directory.
 * cursor keys for movement disabled!
 * run rspec tests in editor
 * handy autocomplete features for brackets and blocks
+* `<M-l/h>` pushes/pops the tag stack
+* Different color schemes for different languages
+* Basic shell support
 
 ## Plugins:
 
@@ -50,7 +57,7 @@ files inside the ".vim" directory.
 * scss
 * coffee-script
 * conque
-* vim-ruby-conque (custom keybindings originally forked from [zolrath](https://github.com/zolrath/vim-ruby-conque))
+* vim-ruby-conque
 * delimitmate
 * gundo
 * javascript
@@ -61,3 +68,6 @@ files inside the ".vim" directory.
 * vim-pasta
 * mustache
 * ruby
+* taglist
+* markdown-folding
+* eunuch
