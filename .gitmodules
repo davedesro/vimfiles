@@ -70,3 +70,12 @@
 [submodule "bundle/taglist"]
 	path = bundle/taglist
 	url = git@github.com:vim-scripts/taglist.vim.git
+[submodule "bundle/clang_complete"]
+	path = bundle/clang_complete
+	url = git@github.com:Rip-Rip/clang_complete.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git@github.com:ervandew/supertab.git
+[submodule "bundle/autoproto"]
+	path = bundle/autoproto
+	url = git@github.com:vim-scripts/autoproto.vim.git

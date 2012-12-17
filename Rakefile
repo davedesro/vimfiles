@@ -50,6 +50,22 @@ task :command_t => :macvim_check do
   end
 end
 
+desc %(Compile clang_completion plugin)
+task :clang_completion => :macvim_check do
+  vim = which('mvim') || which('vim') or abort "vim not found on your system"
+  python = read_python_version(vim)
+
+  Dir.chdir "bundle/clang_complete" do
+    if python
+      puts "Compiling clang_complete plugin..."
+      sh "make clean && make install"
+    else
+      warn color('Warning:', 31) + " Can't compile clang_complete, no ruby support in #{vim}"
+      sh "make clean"
+    end
+  end
+end
+
 task :macvim_check do
   if mvim = which('mvim') and '/usr/bin/vim' == which('vim')
     warn color('Warning:', 31) + " You have MacVim installed, but `vim` still opens system Vim."
@@ -67,6 +83,13 @@ end
 def read_ruby_version vim
   script = %{require "rbconfig"; print File.join(RbConfig::CONFIG["bindir"], RbConfig::CONFIG["ruby_install_name"])}
   version = `#{vim} --nofork --cmd 'ruby #{script}' --cmd 'q' 2>&1 >/dev/null | grep -v 'Vim: Warning'`.strip
+  version unless version.empty? or version.include?("command is not available")
+end
+#
+# Read which python version is vim compiled against
+def read_python_version vim
+  script = %{print "hello"}
+  version = `#{vim} --nofork --cmd 'python #{script}' --cmd 'q' 2>&1 >/dev/null | grep -v 'Vim: Warning'`.strip
   version unless version.empty? or version.include?("command is not available")
 end
 

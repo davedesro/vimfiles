@@ -43,6 +43,7 @@ files inside the ".vim" directory.
 * `<M-l/h>` pushes/pops the tag stack
 * Different color schemes for different languages
 * Basic shell support
+* autocompletion with `<tab>`
 
 ## Plugins:
 
@@ -71,3 +72,6 @@ files inside the ".vim" directory.
 * taglist
 * markdown-folding
 * eunuch
+* clang_complete
+* supertab
+* autoproto
