@@ -209,3 +209,7 @@ nmap ,d :b#<bar>bd#<CR>
 map <M-h> <C-T>
 map <M-l> <C-]>
 map <C-M-l> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+if has("mac")
+  set macmeta
+endif
