@@ -197,7 +197,12 @@ nnoremap <F5> :GundoToggle<CR>
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " turn syntax off for large files
-" autocmd BufWinEnter * if line2byte(line("$") + 1) > 70000 | syntax clear | endif
+autocmd BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
 
 " Kill buffers, keep window state
 nmap ,d :b#<bar>bd#<CR>
+
+" Alt-right/left to navigate forward/backward in the tags stack
+map <M-h> <C-T>
+map <M-l> <C-]>
+map <C-M-l> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
