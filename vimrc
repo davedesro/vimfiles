@@ -193,6 +193,9 @@ nmap <silent> <Leader>a :RunLastConqueCommand<CR>
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
 
+" Taglist
+nnoremap <silent> <F8> :TlistToggle<CR>
+
 " json
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
