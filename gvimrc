@@ -2,9 +2,9 @@ colorscheme solarized
 
 " Set color theme based on file type
 if has("autocmd")
-  au FileType css,scss,html,xhtml,haml,erb,sass colorscheme guardian
-  au FileType python,javascript,coffee colorscheme distinguished
-  au FileType ruby colorscheme railscasts
+  au FileType html,xhtml colorscheme guardian
+  au FileType python, colorscheme distinguished
+  au FileType ruby,haml,erb,sass,scss,css,javascript,coffee colorscheme railscasts
   au FileType sh colorscheme vividchalk
   au FileType c,cpp colorscheme jellybeans
 endif
