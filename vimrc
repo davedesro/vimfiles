@@ -86,6 +86,10 @@ if has("autocmd")
   au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
   map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
 
+  " Arduino
+  au BufRead,BufNewFile *.pde set filetype=c
+  au BufRead,BufNewFile *.ino set filetype=c
+
 endif
 
 set autowrite " Write the contents of the file on buffer switching

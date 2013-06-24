@@ -79,3 +79,6 @@
 [submodule "bundle/autoproto"]
 	path = bundle/autoproto
 	url = git@github.com:vim-scripts/autoproto.vim.git
+[submodule "bundle/arduino"]
+	path = bundle/arduino
+	url = git@github.com:tclem/vim-arduino.git
