@@ -95,6 +95,12 @@ if has("autocmd")
   au BufRead,BufNewFile *.pde set filetype=c
   au BufRead,BufNewFile *.ino set filetype=c
 
+  " magic markers: enable using `H/S/J/C to jump back to
+  " last HTML, stylesheet, JS or Ruby code buffer
+  au BufLeave *.{erb,html,h}    exe "normal! mH"
+  au BufLeave *.{css,scss,sass} exe "normal! mS"
+  au BufLeave *.{js,coffee}     exe "normal! mJ"
+  au BufLeave *.{rb,c,cpp}      exe "normal! mC"
 endif
 
 set autowrite " Write the contents of the file on buffer switching
