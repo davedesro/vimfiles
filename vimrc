@@ -36,6 +36,11 @@ set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
+" Joining lines
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j            " Delete comment char when joining commented lines
+endif
+set nojoinspaces                  " Use only 1 space after "." when joining lines, not 2
 " List chars
 set listchars=""                  " Reset the listchars
 set listchars=tab:»-              " show tabs as dots
@@ -217,9 +222,3 @@ map <C-M-l> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 if has("mac")
   set macmeta
 endif
-
-" Joining lines
-if v:version > 7.03
-  set formatoptions+=j            " Delete comment char when joining commented lines
-endif
-set nojoinspaces                  " Use only 1 space after "." when joining lines, not 2
