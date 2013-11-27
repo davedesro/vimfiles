@@ -1,4 +1,4 @@
-task :default => [:tmp_dirs, :update, :command_t, :clang_completion, :link]
+task :default => [:tmp_dirs, :update, :command_t, :link]
 
 desc %(Bring bundles up to date)
 task :update do
@@ -47,22 +47,6 @@ task :command_t => :macvim_check do
       sh "make clean && make"
     else
       warn color('Warning:', 31) + " Can't compile Command-T, no ruby support in #{vim}"
-      sh "make clean"
-    end
-  end
-end
-
-desc %(Compile clang_completion plugin)
-task :clang_completion => :macvim_check do
-  vim = which('mvim') || which('vim') or abort "vim not found on your system"
-  python = read_python_version(vim)
-
-  Dir.chdir "bundle/clang_complete" do
-    if python
-      puts "Compiling clang_complete plugin..."
-      sh "make clean && make install"
-    else
-      warn color('Warning:', 31) + " Can't compile clang_complete, no ruby support in #{vim}"
       sh "make clean"
     end
   end
