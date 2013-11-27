@@ -10,7 +10,45 @@ set nocompatible
 syntax enable
 set encoding=utf-8
 
-call pathogen#infect()
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" My bundles
+"
+Bundle 'mileszs/ack.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'wincent/Command-T'
+Bundle 'basepi/vim-conque.git'
+Bundle 'Raimondi/delimitMate.git'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'sjl/gundo.vim.git'
+Bundle 'chriseppstein/vim-haml'
+Bundle 'leshill/vim-json.git'
+Bundle 'tpope/vim-markdown'
+Bundle 'benjifisher/matchit.zip.git'
+Bundle 'mrtazz/molokai.vim'
+Bundle 'juvenn/mustache.vim.git'
+Bundle 'tpope/vim-rails'
+Bundle 'skwp/vim-ruby-conque.git'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-surround.git'
+Bundle 'tomtom/tcomment_vim.git'
+Bundle 'sickill/vim-pasta.git'
+Bundle 'flazz/vim-colorschemes.git'
+Bundle 'tpope/vim-eunuch'
+Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'vim-scripts/taglist.vim.git'
+Bundle 'tclem/vim-arduino.git'
+Bundle 'vim-scripts/ZoomWin.git'
+Bundle 'nelstrom/vim-visual-star-search'
+Bundle 'pangloss/vim-javascript.git'
+
+
 filetype plugin indent on
 
 set background=dark
