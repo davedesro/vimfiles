@@ -1,21 +1,8 @@
-task :default => [:tmp_dirs, :update, :command_t, :link]
+task :default => [:tmp_dirs, :update, :command_t, :youcompleteme, :link]
 
-desc %(Bring bundles up to date)
+desc %(Update or create bundles in the bundle/ directory)
 task :update do
-  sh "git submodule sync >/dev/null"
-  sh "git submodule update --init"
-end
-
-desc %(Update each submodule from its upstream)
-task :submodule_pull do
-  system <<-EOS
-    git submodule foreach '
-      rev=$(git rev-parse HEAD)
-      git pull --quiet --ff-only --no-rebase origin master &&
-      git --no-pager log --no-merges --pretty=format:"%s %Cgreen(%ar)%Creset" --date=relative ${rev}..
-      echo
-    '
-  EOS
+  sh "vim +BundleInstall +qall"
 end
 
 desc %(Make ~/.vimrc and ~/.gvimrc symlinks)
@@ -33,6 +20,15 @@ end
 task :tmp_dirs do
   mkdir_p "_backup"
   mkdir_p "_temp"
+end
+
+desc %(Compile YouCompleteMe plugin)
+task :youcompleteme => :macvim_check do
+  Dir.chdir "bundle/YouCompleteMe" do
+    puts "Compiling YouCompleteMe plugin..."
+    sh "./install.sh --clang-completer"
+  end
+
 end
 
 desc %(Compile Command-T plugin)
