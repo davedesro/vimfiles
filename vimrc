@@ -47,6 +47,7 @@ Bundle 'tclem/vim-arduino.git'
 Bundle 'vim-scripts/ZoomWin.git'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'pangloss/vim-javascript.git'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'Valloric/YouCompleteMe.git'
 
 filetype plugin indent on
