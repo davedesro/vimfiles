@@ -9,9 +9,17 @@ if has("autocmd")
   au FileType c,cpp colorscheme jellybeans
 endif
 
-set guifont=Menlo\ Regular:h12
-set linespace=2
-set antialias
+
+if has("unix")
+  if system('uname')=~'Darwin'
+    set guifont=Menlo\ Regular:h12
+    set linespace=2
+  else
+    set guifont=Menlo\ for\ Powerline\ 10
+    set linespace=1
+  endif
+  set antialias
+endif
 
 " Don't beep
 set visualbell
