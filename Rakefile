@@ -1,4 +1,11 @@
-task :default => [:tmp_dirs, :update, :command_t, :youcompleteme, :link]
+# Requirements:
+#  - ctags
+#  - vim with ruby support for Command-T
+#  - vim version 7.3.584+ needed for YouCompleteMe
+#  - Get latest vundle here: git@github.com:gmarik/vundle.git
+#    and place it  vimfiles/bundle/
+
+task :default => [:link, :tmp_dirs, :update, :command_t, :youcompleteme]
 
 desc %(Update or create bundles in the bundle/ directory)
 task :update do
@@ -36,7 +43,7 @@ task :command_t => :macvim_check do
   vim = which('mvim') || which('vim') or abort "vim not found on your system"
   ruby = read_ruby_version(vim)
 
-  Dir.chdir "bundle/command-t/ruby/command-t" do
+  Dir.chdir "bundle/Command-T/ruby/command-t" do
     if ruby
       puts "Compiling Command-T plugin..."
       sh(*Array(ruby).concat(%w[extconf.rb]))
