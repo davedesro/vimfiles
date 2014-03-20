@@ -4,6 +4,9 @@
 #  - vim version 7.3.584+ needed for YouCompleteMe
 #  - Get latest vundle here: git@github.com:gmarik/vundle.git
 #    and place it  vimfiles/bundle/
+#    TODO:
+#      - link .vim properly
+#      - git clone Vundle.vim, rename and move to bundle/vundle
 
 task :default => [:link, :tmp_dirs, :update, :command_t, :youcompleteme]
 

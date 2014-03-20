@@ -48,7 +48,9 @@ Bundle 'vim-scripts/ZoomWin.git'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'pangloss/vim-javascript.git'
 Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'Valloric/YouCompleteMe.git'
+if version >= 7.3.584
+  Bundle 'Valloric/YouCompleteMe.git'
+endif
 
 filetype plugin indent on
 
