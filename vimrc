@@ -126,7 +126,7 @@ if has("autocmd")
 
   au FocusLost * :wa
 
-  au FileType coffee,python :set foldmethod=indent
+  au FileType coffee,python,html :set foldmethod=indent
 
   " XML
   au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
