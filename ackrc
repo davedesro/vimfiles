@@ -1,3 +1,4 @@
+# RoR
 --type-add=ruby=.haml
 --type-add=css=.scss,sass
 --type-add=js=.coffee
@@ -5,4 +6,10 @@
 --ignore-dir=.jhw-cache
 --ignore-dir=app/assets/maintenance
 --ignore-dir=coverage
---ignore-dir=tmp
+
+# Cypress
+--ignore-dir=cone/cone.cydsn/CortexM3/ARM_GCC_473/Debug
+--ignore-file=is:cone/cone.cydsn/cone.cyprj.ddesrochers
+--ignore-dir=cone/cone.cydsn/codegentemp
+--ignore-dir=cone/cone.cydsn/Bootloadable_v1_20
+--ignore-dir=cone/cone.cydsn/Generated_Source
