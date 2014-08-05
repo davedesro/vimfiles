@@ -15,42 +15,43 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " My bundles
 "
-Bundle 'mileszs/ack.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'wincent/Command-T'
-Bundle 'basepi/vim-conque.git'
-Bundle 'Raimondi/delimitMate.git'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fugitive'
-Bundle 'sjl/gundo.vim.git'
-Bundle 'chriseppstein/vim-haml'
-Bundle 'leshill/vim-json.git'
-Bundle 'tpope/vim-markdown'
-Bundle 'benjifisher/matchit.zip.git'
-Bundle 'mrtazz/molokai.vim'
-Bundle 'juvenn/mustache.vim.git'
-Bundle 'tpope/vim-rails'
-Bundle 'skwp/vim-ruby-conque.git'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-surround.git'
-Bundle 'tomtom/tcomment_vim.git'
-Bundle 'sickill/vim-pasta.git'
-Bundle 'flazz/vim-colorschemes.git'
-Bundle 'tpope/vim-eunuch'
-Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'vim-scripts/taglist.vim.git'
-Bundle 'tclem/vim-arduino.git'
-Bundle 'vim-scripts/ZoomWin.git'
-Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'pangloss/vim-javascript.git'
-Bundle 'christoomey/vim-tmux-navigator'
-if version >= 7.3.584
-  Bundle 'Valloric/YouCompleteMe.git'
+Plugin 'mileszs/ack.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'wincent/Command-T'
+Plugin 'basepi/vim-conque.git'
+Plugin 'Raimondi/delimitMate.git'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
+Plugin 'sjl/gundo.vim.git'
+Plugin 'chriseppstein/vim-haml'
+Plugin 'leshill/vim-json.git'
+Plugin 'tpope/vim-markdown'
+Plugin 'benjifisher/matchit.zip.git'
+Plugin 'mrtazz/molokai.vim'
+Plugin 'juvenn/mustache.vim.git'
+Plugin 'tpope/vim-rails'
+Plugin 'skwp/vim-ruby-conque.git'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tomtom/tcomment_vim.git'
+Plugin 'sickill/vim-pasta.git'
+Plugin 'flazz/vim-colorschemes.git'
+Plugin 'tpope/vim-eunuch'
+Plugin 'nelstrom/vim-markdown-folding'
+Plugin 'vim-scripts/taglist.vim.git'
+Plugin 'tclem/vim-arduino.git'
+Plugin 'vim-scripts/ZoomWin.git'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'pangloss/vim-javascript.git'
+Plugin 'christoomey/vim-tmux-navigator'
+if version >= 703
+  Plugin 'Valloric/YouCompleteMe'
 endif
+Plugin 'pyclewn', { 'pinned': 1 }
 
 filetype plugin indent on
 
@@ -119,6 +120,9 @@ if has("autocmd")
   " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=160
 
+  " C file has a tab of 8 (for Aether)
+  au FileType c set tabstop=8 shiftwidth=8 softtabstop=8
+
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
@@ -126,7 +130,7 @@ if has("autocmd")
 
   au FocusLost * :wa
 
-  au FileType coffee,python,html :set foldmethod=indent
+  au FileType coffee,python,html,xml :set foldmethod=indent
 
   " XML
   au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
@@ -232,6 +236,7 @@ autocmd BufWritePost *
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=4
 
+let g:sh_fold_enabled=1
 set foldmethod=syntax
 set foldlevel=99
 
@@ -253,7 +258,7 @@ nnoremap <F5> :GundoToggle<CR>
 nnoremap <silent> <F8> :TlistToggle<CR>
 
 " json
-map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+map <leader>jt  <Esc>:%!json_pp -f json -t json -json_opt pretty<CR>
 
 " turn syntax off for large files
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
