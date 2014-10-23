@@ -47,7 +47,8 @@ task :pyclewn => :macvim_check do
       sh "tar -xvzf #{pyclewn_install_file}"
       Dir.chdir pyclewn_version do
         puts "Installing #{pyclewn_version}..."
-        sh "vimdir=$HOME/.vim/#{pyclewn_path} sudo python setup.py install --force"
+        # sh "vimdir=$HOME/.vim/#{pyclewn_path} python setup.py install --force"
+        sh "sudo python setup.py install --force"
       end
     end
   else
