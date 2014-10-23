@@ -57,7 +57,7 @@ filetype plugin indent on
 
 set background=dark
 color mrkn256
-set nonumber
+set number
 set ruler       " show the cursor position all the time
 set cursorline
 set showcmd     " display incomplete commands
@@ -120,8 +120,8 @@ if has("autocmd")
   " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=160
 
-  " C file has a tab of 8 (for Aether)
-  au FileType c set tabstop=8 shiftwidth=8 softtabstop=8
+  " C file has a tab of 8 and actual tabs (for Aether) - yuck!
+  au FileType c set tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab textwidth=120
 
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump
@@ -222,7 +222,7 @@ if has("statusline") && !&cp
   set statusline+=%=
 
   " Set Line number
-  set statusline+=L:%l\ (%p%%)
+  set statusline+=L:%l\ (%p%%),\ C:%c
 
   " [RO] marker
   set statusline+=\ %r
@@ -252,7 +252,7 @@ nmap <silent> <Leader>RR :RunRakeConque<CR>
 nmap <silent> <Leader>a :RunLastConqueCommand<CR>
 
 " Gundo
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <silent> <F5> :GundoToggle<CR>
 
 " Taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -261,7 +261,7 @@ nnoremap <silent> <F8> :TlistToggle<CR>
 map <leader>jt  <Esc>:%!json_pp -f json -t json -json_opt pretty<CR>
 
 " turn syntax off for large files
-autocmd BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
+" autocmd BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
 
 " Kill buffers, keep window state
 nmap ,d :b#<bar>bd#<CR>
@@ -274,3 +274,6 @@ map <C-M-l> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 if has("mac")
   set macmeta
 endif
+
+nnoremap <C-p> :bp<CR>
+nnoremap <C-n> :bn<CR>
