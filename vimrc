@@ -235,6 +235,7 @@ autocmd BufWritePost *
 
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=4
+let g:CommandTTraverseSCM='pwd'
 
 let g:sh_fold_enabled=1
 set foldmethod=syntax
@@ -277,3 +278,7 @@ endif
 
 nnoremap <C-p> :bp<CR>
 nnoremap <C-n> :bn<CR>
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_show_diagnostics_ui = 0
