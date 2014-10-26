@@ -184,6 +184,8 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 set wildignore+=tmp/**,*.rbc,.rbx,*.scssc,*.sassc
 " Ignore non-development rails area
 set wildignore+=public/**,coverage/**,log/**
+" Ignore node libraries
+set wildignore+=node_modules
 
 nnoremap <leader><leader> <c-^>
 
