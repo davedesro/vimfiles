@@ -48,6 +48,7 @@ Plugin 'vim-scripts/ZoomWin.git'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'digitaltoad/vim-jade.git'
 if version >= 703
   Plugin 'Valloric/YouCompleteMe'
 endif
