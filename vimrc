@@ -285,3 +285,9 @@ nnoremap <C-n> :bn<CR>
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_show_diagnostics_ui = 0
+
+if has("autocmd") && has("unix")
+  au InsertEnter * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'ibeam'\""
+  au InsertLeave * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
+  au VimLeave * silent execute  "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
+endif
