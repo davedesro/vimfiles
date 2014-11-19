@@ -254,6 +254,9 @@ nmap <silent> <Leader>cl :RunCucumberCurrentLineConque<CR>
 nmap <silent> <Leader>cc :RunCucumberCurrentFileConque<CR>
 nmap <silent> <Leader>RR :RunRakeConque<CR>
 nmap <silent> <Leader>a :RunLastConqueCommand<CR>
+" To kick off a generic conque command,
+" use g:exec_script to define the command
+nmap <silent> <leader>m :GenericConqueCommand<CR>
 
 " Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
@@ -286,8 +289,13 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_show_diagnostics_ui = 0
 
+" Used in vim-ruby-conque, added support for generic command
+let g:exec_script     = "/home/dave/Documents/MorseProject/expt-dsd/Scripts/linux/test-on-arm.sh"
+
+
 if has("autocmd") && has("unix")
   au InsertEnter * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'ibeam'\""
   au InsertLeave * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
   au VimLeave * silent execute  "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
 endif
+
