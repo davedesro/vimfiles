@@ -102,6 +102,9 @@ set smartcase                     " ... unless they contain at least one capital
 set relativenumber
 set undofile
 
+" Global highlighting
+highlight CursorLine cterm=NONE
+
 function s:setupWrapping()
   set wrap
   set wrapmargin=2
@@ -131,7 +134,7 @@ if has("autocmd")
 
   au FocusLost * :wa
 
-  au FileType coffee,python,html,xml :set foldmethod=indent
+  au FileType coffee,python,html,xml,rexx :set foldmethod=indent
 
   " XML
   au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
@@ -141,12 +144,24 @@ if has("autocmd")
   au BufRead,BufNewFile *.pde set filetype=c
   au BufRead,BufNewFile *.ino set filetype=c
 
+  " REXX
+  au BufRead,BufNewFile *.{zrx,rexx}  set filetype=rexx
+
   " magic markers: enable using `H/S/J/C to jump back to
   " last HTML, stylesheet, JS or Ruby code buffer
   au BufLeave *.{erb,html,h}    exe "normal! mH"
   au BufLeave *.{css,scss,sass} exe "normal! mS"
   au BufLeave *.{js,coffee}     exe "normal! mJ"
   au BufLeave *.{rb,c,cpp}      exe "normal! mC"
+
+  au BufWritePost *
+    \ if filereadable('tags') |
+    \   call system('ctags -a '.expand('%')) |
+    \ endif
+
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
+
 endif
 
 set autowrite " Write the contents of the file on buffer switching
@@ -230,11 +245,6 @@ if has("statusline") && !&cp
   " [RO] marker
   set statusline+=\ %r
 endif
-
-autocmd BufWritePost *
-      \ if filereadable('tags') |
-      \   call system('ctags -a '.expand('%')) |
-      \ endif
 
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=4
