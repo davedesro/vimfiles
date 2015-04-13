@@ -49,9 +49,9 @@ Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'digitaltoad/vim-jade.git'
-if version >= 703
-  Plugin 'Valloric/YouCompleteMe'
-endif
+" if version >= 703
+"   Plugin 'Valloric/YouCompleteMe'
+" endif
 Plugin 'pyclewn', { 'pinned': 1 }
 
 filetype plugin indent on
