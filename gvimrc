@@ -1,5 +1,5 @@
 if has("unix")
-  if system('uname')=~'Darwin'
+  if has('mac')
     set guifont=Menlo\ Regular:h12
     set linespace=2
   else
