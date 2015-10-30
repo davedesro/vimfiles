@@ -142,8 +142,8 @@ if has("autocmd")
   " Arduino
   au BufRead,BufNewFile *.{pde,ino} set filetype=arduino
   au FileType arduino
-    \ nmap <silent> <Leader>l :ArduinoUpload<CR> |
-    \ nmap <silent> <Leader>v :ArduinoVerify<CR>
+    \ nmap <silent> <Leader>l :write<CR> :ArduinoUpload<CR> |
+    \ nmap <silent> <Leader>v :write<CR> :ArduinoVerify<CR>
 
   " REXX
   au BufRead,BufNewFile *.{zrx,rexx}  set filetype=rexx
