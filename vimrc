@@ -124,8 +124,7 @@ if has("autocmd")
   " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=160
 
-  " C file has a tab of 8 and actual tabs (for Aether) - yuck!
-  au FileType c set tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab textwidth=120
+  au FileType c set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab textwidth=120
 
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump
@@ -141,8 +140,7 @@ if has("autocmd")
   map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
 
   " Arduino
-  au BufRead,BufNewFile *.pde set filetype=c
-  au BufRead,BufNewFile *.ino set filetype=c
+  au BufRead,BufNewFile *.{pde,ino} set filetype=arduino
 
   " REXX
   au BufRead,BufNewFile *.{zrx,rexx}  set filetype=rexx
@@ -161,6 +159,13 @@ if has("autocmd")
 
   autocmd QuickFixCmdPost [^l]* nested cwindow
   autocmd QuickFixCmdPost    l* nested lwindow
+
+  let os=substitute(system('uname'), '\n', '', '')
+  if has("unix") && os != 'Darwin'
+    au InsertEnter * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'ibeam'\""
+    au InsertLeave * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
+    au VimLeave * silent execute  "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
+  endif
 
 endif
 
@@ -302,10 +307,4 @@ let g:ycm_show_diagnostics_ui = 0
 " Used in vim-ruby-conque, added support for generic command
 let g:exec_script     = "/home/dave/Documents/MorseProject/expt-dsd/Scripts/linux/test-on-arm.sh"
 
-
-if has("autocmd") && has("unix")
-  au InsertEnter * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'ibeam'\""
-  au InsertLeave * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
-  au VimLeave * silent execute  "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
-endif
 
