@@ -141,6 +141,9 @@ if has("autocmd")
 
   " Arduino
   au BufRead,BufNewFile *.{pde,ino} set filetype=arduino
+  au FileType arduino
+    \ nmap <silent> <Leader>l :ArduinoUpload<CR> |
+    \ nmap <silent> <Leader>v :ArduinoVerify<CR>
 
   " REXX
   au BufRead,BufNewFile *.{zrx,rexx}  set filetype=rexx
@@ -151,6 +154,16 @@ if has("autocmd")
   au BufLeave *.{css,scss,sass} exe "normal! mS"
   au BufLeave *.{js,coffee}     exe "normal! mJ"
   au BufLeave *.{rb,c,cpp}      exe "normal! mC"
+
+  " Override rspec conque key bindings
+  au FileType rb
+    \ nmap <silent> <Leader>rr :RunRubyCurrentFileConque<CR>     |
+    \ nmap <silent> <Leader>s :RunRspecCurrentFileConque<CR>     |
+    \ nmap <silent> <Leader>l :RunRspecCurrentLineConque<CR>     |
+    \ nmap <silent> <Leader>cl :RunCucumberCurrentLineConque<CR> |
+    \ nmap <silent> <Leader>cc :RunCucumberCurrentFileConque<CR> |
+    \ nmap <silent> <Leader>RR :RunRakeConque<CR>                |
+    \ nmap <silent> <Leader>a :RunLastConqueCommand<CR>
 
   au BufWritePost *
     \ if filereadable('tags') |
@@ -261,14 +274,6 @@ set foldlevel=99
 
 " Conque
 let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
-" Override rspec conque key bindings
-nmap <silent> <Leader>rr :RunRubyCurrentFileConque<CR>
-nmap <silent> <Leader>s :RunRspecCurrentFileConque<CR>
-nmap <silent> <Leader>l :RunRspecCurrentLineConque<CR>
-nmap <silent> <Leader>cl :RunCucumberCurrentLineConque<CR>
-nmap <silent> <Leader>cc :RunCucumberCurrentFileConque<CR>
-nmap <silent> <Leader>RR :RunRakeConque<CR>
-nmap <silent> <Leader>a :RunLastConqueCommand<CR>
 " To kick off a generic conque command,
 " use g:exec_script to define the command
 nmap <silent> <leader>m :GenericConqueCommand<CR>
@@ -286,7 +291,7 @@ map <leader>jt  <Esc>:%!json_pp -f json -t json -json_opt pretty<CR>
 " autocmd BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
 
 " Kill buffers, keep window state
-nmap ,d :b#<bar>bd#<CR>
+nmap <leader>d :b#<bar>bd#<CR>
 
 " Alt-right/left to navigate forward/backward in the tags stack
 map <M-h> <C-T>
@@ -300,9 +305,9 @@ endif
 nnoremap <C-p> :bp<CR>
 nnoremap <C-n> :bn<CR>
 
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_show_diagnostics_ui = 0
 
 " Used in vim-ruby-conque, added support for generic command
 let g:exec_script     = "/home/dave/Documents/MorseProject/expt-dsd/Scripts/linux/test-on-arm.sh"
