@@ -180,6 +180,10 @@ if has("autocmd")
     au VimLeave * silent execute  "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
   endif
 
+  if $TERM_PROGRAM =~ "iTerm"
+      let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+      let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+  endif
 endif
 
 set autowrite " Write the contents of the file on buffer switching
