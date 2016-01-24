@@ -49,6 +49,7 @@ Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'digitaltoad/vim-jade.git'
+Plugin 'derekwyatt/vim-fswitch'
 " if version >= 703
 "   Plugin 'Valloric/YouCompleteMe'
 " endif
@@ -124,7 +125,11 @@ if has("autocmd")
   " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=160
 
-  au FileType c set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab textwidth=120
+  au FileType c
+    \ set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab textwidth=120 |
+    \ nmap <silent> <Leader>h :FSHere<cr> |
+    \ nmap <silent> <Leader>H :FSSplitRight<cr>
+
 
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump

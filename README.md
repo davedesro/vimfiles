@@ -18,7 +18,7 @@ Please let me know if there's a *must have* that I haven't found.
 
 ## Installation:
 
-Prerequisites: ruby, git, vim compiled with Ruby and Python (if [youcompleteme](https://github.com/Valloric/YouCompleteMe) is enabled).
+Prerequisites: ruby, git, vim compiled with Ruby and Python.
 
 1. Manually `git clone` vundle and put it in the bundle directory
 2. Move your existing configuration somewhere else:
@@ -45,7 +45,7 @@ files inside the ".vim" directory.
 * `<M-l/h>` pushes/pops the tag stack
 * Different color schemes for different languages
 * Basic shell support
-* autocompletion with `<tab>`
+* `,h` toggles between source and header files
 
 ## Plugins:
 
@@ -76,4 +76,5 @@ files inside the ".vim" directory.
 * eunuch
 * clang_complete
 * supertab
-* youcompleteme
+* FSwitch
+
