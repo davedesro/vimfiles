@@ -21,3 +21,6 @@
 
 # ctags
 --ignore-file=is:tags
+
+# Simplicity Studio (SiLabs)
+--ignore-dir=GNU ARM v4.8.3 - Debug
