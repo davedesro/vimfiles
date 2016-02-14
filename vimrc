@@ -281,6 +281,10 @@ endif
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=4
 let g:CommandTTraverseSCM='pwd'
+let g:CommandTMatchWindowReverse=0
+" TODO: Find out how to properly map these. h-split doesn't work in console right now
+" let g:CommandTAcceptSelectionVSplitMap='C-v'
+" let g:CommandTAcceptSelectionSplitMap='C-h'
 
 let g:sh_fold_enabled=1
 set foldmethod=syntax
