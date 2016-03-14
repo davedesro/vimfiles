@@ -170,6 +170,9 @@ if has("autocmd")
     \ nmap <silent> <Leader>RR :RunRakeConque<CR>                |
     \ nmap <silent> <Leader>a :RunLastConqueCommand<CR>
 
+  " BGS
+  au BufRead,BufNewFile *.bgs set filetype=ruby
+
   au BufWritePost *
     \ if filereadable('tags') |
     \   call system('ctags -a '.expand('%')) |
