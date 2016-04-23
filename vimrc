@@ -125,7 +125,7 @@ if has("autocmd")
   " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=160
 
-  au FileType c
+  au FileType c,cpp
     \ set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab textwidth=120 |
     \ nmap <silent> <Leader>h :FSHere<cr> |
     \ nmap <silent> <Leader>H :FSSplitRight<cr>
@@ -237,6 +237,8 @@ set wildignore+=tmp/**,*.rbc,.rbx,*.scssc,*.sassc
 set wildignore+=public/**,coverage/**,log/**
 " Ignore node libraries
 set wildignore+=node_modules
+" Ignore C/C++ compiling assets
+set wildignore+=*.d,*.o,*.a,*.ld
 
 nnoremap <leader><leader> <c-^>
 
@@ -333,4 +335,18 @@ nnoremap <C-n> :bn<CR>
 " Used in vim-ruby-conque, added support for generic command
 let g:exec_script     = "/home/dave/Documents/MorseProject/expt-dsd/Scripts/linux/test-on-arm.sh"
 
-
+if has("cscope")
+  set csprg=/usr/bin/cscope
+  set csto=0
+  set cst
+  set nocsverb
+  " add any database in current directory
+  if filereadable("cscope.out")
+    cs add cscope.out
+    " else add database pointed to by environment
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+  endif
+endif
+set csverb
+map  <C-\>:cs find 3 <C-r>=expand("<cword>")<CR><CR>
