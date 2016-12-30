@@ -14,6 +14,14 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
+
+" This must be set before the XML plugin is loaded
+if has("autocmd")
+  au FileType xml
+    \ let maplocalleader="m" |
+    \ set foldmethod=indent
+endif
+
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 
@@ -50,6 +58,7 @@ Plugin 'pangloss/vim-javascript.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'digitaltoad/vim-jade.git'
 Plugin 'derekwyatt/vim-fswitch'
+Plugin 'othree/xml.vim'
 " if version >= 703
 "   Plugin 'Valloric/YouCompleteMe'
 " endif
@@ -141,8 +150,9 @@ if has("autocmd")
   au FileType coffee,python,html,xml,rexx :set foldmethod=indent
 
   " XML
-  au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
-  map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
+  au FileType xml
+    \ set noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 |
+    \ map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
 
   " Arduino
   au BufRead,BufNewFile *.{pde,ino} set filetype=arduino
