@@ -17,9 +17,9 @@ call vundle#rc()
 
 " This must be set before the XML plugin is loaded
 if has("autocmd")
-  au FileType xml
+  au FileType xml,html
     \ let maplocalleader="m" |
-    \ set foldmethod=indent
+    \ setlocal foldmethod=indent
 endif
 
 " let Vundle manage Vundle
@@ -28,37 +28,27 @@ Plugin 'VundleVim/Vundle.vim'
 " My bundles
 "
 Plugin 'mileszs/ack.vim'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'wincent/Command-T'
-Plugin 'basepi/vim-conque.git'
 Plugin 'Raimondi/delimitMate.git'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
 Plugin 'sjl/gundo.vim.git'
-Plugin 'chriseppstein/vim-haml'
-Plugin 'leshill/vim-json.git'
 Plugin 'tpope/vim-markdown'
-Plugin 'benjifisher/matchit.zip.git'
-Plugin 'mrtazz/molokai.vim'
-Plugin 'juvenn/mustache.vim.git'
-Plugin 'tpope/vim-rails'
-Plugin 'skwp/vim-ruby-conque.git'
-Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/matchit.zip.git'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'sickill/vim-pasta.git'
 Plugin 'flazz/vim-colorschemes.git'
-Plugin 'tpope/vim-eunuch'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'vim-scripts/taglist.vim.git'
 Plugin '4Evergreen4/vim-hardy'
 Plugin 'vim-scripts/ZoomWin.git'
-Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'bronson/vim-visual-star-search'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'digitaltoad/vim-jade.git'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'othree/xml.vim'
+Plugin 'python-mode/python-mode.git'
 " if version >= 703
 "   Plugin 'Valloric/YouCompleteMe'
 " endif
@@ -115,41 +105,37 @@ set undofile
 " Global highlighting
 highlight CursorLine cterm=NONE
 
-function s:setupWrapping()
-  set wrap
-  set wrapmargin=2
-  set textwidth=80
-endfunction
-
 if has("autocmd")
+
+  " turn syntax off for large files
+  au BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
+
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
 
   " Make sure all markdown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown |
+        \ set wrap wrapmargin=2 textwidth=80
 
   " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
 
-  " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-  au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=160
+  au FileType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab textwidth=90
+  au FileType c,cpp nmap <silent> <Leader>h :FSHere<cr>
+  au FileType c,cpp nmap <silent> <Leader>H :FSSplitRight<cr>
 
-  au FileType c,cpp
-    \ set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab textwidth=120 |
-    \ nmap <silent> <Leader>h :FSHere<cr> |
-    \ nmap <silent> <Leader>H :FSSplitRight<cr>
+  au Syntax c,cpp setlocal foldmethod=syntax
+  au Syntax c,cpp normal! zR
 
+  au FileType python nmap <leader>L :PymodeLint<CR>
 
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 
-  au FocusLost * :wa
+  au FileType coffee,rexx :setlocal foldmethod=indent
 
-  au FileType coffee,python,html,xml,rexx :set foldmethod=indent
-
-  " XML
   au FileType xml
     \ set noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 |
     \ map <leader>xt  <Esc>:silent 1,$!xmllint --format --recover - 2>/dev/null<CR>
@@ -170,23 +156,13 @@ if has("autocmd")
   au BufLeave *.{js,coffee}     exe "normal! mJ"
   au BufLeave *.{rb,c,cpp}      exe "normal! mC"
 
-  " Override rspec conque key bindings
-  au FileType rb
-    \ nmap <silent> <Leader>rr :RunRubyCurrentFileConque<CR>     |
-    \ nmap <silent> <Leader>s :RunRspecCurrentFileConque<CR>     |
-    \ nmap <silent> <Leader>l :RunRspecCurrentLineConque<CR>     |
-    \ nmap <silent> <Leader>cl :RunCucumberCurrentLineConque<CR> |
-    \ nmap <silent> <Leader>cc :RunCucumberCurrentFileConque<CR> |
-    \ nmap <silent> <Leader>RR :RunRakeConque<CR>                |
-    \ nmap <silent> <Leader>a :RunLastConqueCommand<CR>
-
   " BGS
   au BufRead,BufNewFile *.bgs set filetype=ruby
 
-  au BufWritePost *
-    \ if filereadable('tags') |
-    \   call system('ctags -a '.expand('%')) |
-    \ endif
+  " au BufWritePost *
+  "   \ if filereadable('tags') |
+  "   \   call system('ctags -a '.expand('%')) |
+  "   \ endif
 
   autocmd QuickFixCmdPost [^l]* nested cwindow
   autocmd QuickFixCmdPost    l* nested lwindow
@@ -229,13 +205,6 @@ let mapleader=","
 nmap <leader>p pV`]=
 nmap <leader>P PV`]=
 
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -248,14 +217,12 @@ set wildignore+=public/**,coverage/**,log/**
 " Ignore node libraries
 set wildignore+=node_modules
 " Ignore C/C++ compiling assets
-set wildignore+=*.d,*.o,*.a,*.ld
+set wildignore+=*.d,*.o,*.a,*.ld,*.hex,*.axf,*.elf
 
 nnoremap <leader><leader> <c-^>
 
 " find merge conflict markers
 nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-
-command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
 set splitright
 set splitbelow
@@ -302,14 +269,14 @@ let g:CommandTMatchWindowReverse=0
 " let g:CommandTAcceptSelectionSplitMap='C-h'
 
 let g:sh_fold_enabled=1
-set foldmethod=syntax
-set foldlevel=99
+set foldlevelstart=20
 
-" Conque
-let g:ConqueTerm_CWInsert = 1      " Exit conque terminal using <C-w>
-" To kick off a generic conque command,
-" use g:exec_script to define the command
-nmap <silent> <leader>m :GenericConqueCommand<CR>
+" pymode
+let g:pymode_doc = 0
+let g:pymode_breakpoint_bind = '<leader>B'
+let g:pymode_lint_cwindow = 0
+let g:pymode_rope = 0
+let g:pymode_lint_on_write = 0
 
 " Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
@@ -319,9 +286,6 @@ nnoremap <silent> <F8> :TlistToggle<CR>
 
 " json
 map <leader>jt  <Esc>:%!json_pp -f json -t json -json_opt pretty<CR>
-
-" turn syntax off for large files
-" autocmd BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
 
 " Kill buffers, keep window state
 nmap <leader>d :b#<bar>bd#<CR>
@@ -341,9 +305,6 @@ nnoremap <C-n> :bn<CR>
 " let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:ycm_enable_diagnostic_signs = 0
 " let g:ycm_show_diagnostics_ui = 0
-
-" Used in vim-ruby-conque, added support for generic command
-let g:exec_script     = "/home/dave/Documents/MorseProject/expt-dsd/Scripts/linux/test-on-arm.sh"
 
 if has("cscope")
   set csprg=/usr/bin/cscope
