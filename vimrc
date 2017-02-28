@@ -271,6 +271,10 @@ let g:CommandTMatchWindowReverse=0
 let g:sh_fold_enabled=1
 set foldlevelstart=20
 
+" Ack
+nnoremap <Leader>a :LAck!<Space>
+
+
 " pymode
 let g:pymode_doc = 0
 let g:pymode_breakpoint_bind = '<leader>B'
