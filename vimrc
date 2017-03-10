@@ -108,7 +108,7 @@ highlight CursorLine cterm=NONE
 if has("autocmd")
 
   " turn syntax off for large files
-  au BufWinEnter * if line2byte(line("$") + 1) > 100000 | syntax clear | endif
+  au BufWinEnter * if line2byte(line("$") + 1) > 200000 | syntax clear | endif
 
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
@@ -217,7 +217,7 @@ set wildignore+=public/**,coverage/**,log/**
 " Ignore node libraries
 set wildignore+=node_modules
 " Ignore C/C++ compiling assets
-set wildignore+=*.d,*.o,*.a,*.ld,*.hex,*.axf,*.elf
+set wildignore+=*.d,*.o,*.a,*.hex,*.axf,*.elf
 
 nnoremap <leader><leader> <c-^>
 
