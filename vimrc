@@ -120,9 +120,15 @@ if has("autocmd")
   " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
 
-  au FileType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab textwidth=90
-  au FileType c,cpp nmap <silent> <Leader>h :FSHere<cr>
-  au FileType c,cpp nmap <silent> <Leader>H :FSSplitRight<cr>
+  au FileType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab colorcolumn=90
+  au FileType c,cpp,make
+    \ nmap <silent> <Leader>n :cn<CR>     |
+    \ nmap <silent> <Leader>p :cp<CR>     |
+    \ nmap <silent> <Leader>c :make V=1<CR>   |
+    \ nmap <silent> <Leader>r :make install V=1<CR>   |
+    \ nmap <silent> <Leader>h :FSHere<CR> |
+    \ nmap <silent> <Leader>H :FSSplitRight<CR>
+  au BufEnter *.c compiler gcc
 
   au Syntax c,cpp setlocal foldmethod=syntax
   au Syntax c,cpp normal! zR
