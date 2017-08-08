@@ -19,8 +19,13 @@
 # Node
 --ignore-dir=node_modules
 
-# ctags
+# C
 --ignore-file=is:tags
+--ignore-file=is:*.d
+--ignore-file=is:*.lst
+--ignore-file=is:*.hex
+--ignore-dir=build
 
 # Simplicity Studio (SiLabs)
 --ignore-dir=GNU ARM v4.8.3 - Debug
+
