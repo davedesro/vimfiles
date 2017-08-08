@@ -49,6 +49,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'othree/xml.vim'
 Plugin 'python-mode/python-mode.git'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'thinca/vim-localrc'
 " if version >= 703
 "   Plugin 'Valloric/YouCompleteMe'
 " endif
@@ -124,7 +126,7 @@ if has("autocmd")
   au FileType c,cpp,make
     \ nmap <silent> <Leader>n :cn<CR>     |
     \ nmap <silent> <Leader>p :cp<CR>     |
-    \ nmap <silent> <Leader>c :make V=1<CR>   |
+    \ nmap <silent> <Leader>c :make all V=1<CR>   |
     \ nmap <silent> <Leader>r :make install V=1<CR>   |
     \ nmap <silent> <Leader>h :FSHere<CR> |
     \ nmap <silent> <Leader>H :FSSplitRight<CR>
@@ -301,6 +303,10 @@ nmap <leader>d :b#<bar>bd#<CR>
 map <M-h> <C-T>
 map <M-l> <C-]>
 map <C-M-l> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" load project specific vim settings
+set secure
+call localrc#load('.tree.vimrc', getcwd())
 
 if has("mac")
   set macmeta
