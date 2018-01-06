@@ -177,16 +177,16 @@ if has("autocmd")
 
   let os=substitute(system('uname'), '\n', '', '')
 
-  if exists('$TMUX')
+  if has("unix") && os != 'Darwin'
+    au InsertEnter * silent execute "!echo -ne \"\e[5 q\""
+    au InsertLeave * silent execute "!echo -ne \"\e[1 q\""
+    au VimLeave * silent execute "!echo -ne \"\e[1 q\""
+  elseif exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   elseif $TERM_PROGRAM =~ "iTerm" || $SSH_CLIENT
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-  elseif has("unix") && os != 'Darwin'
-    au InsertEnter * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'ibeam'\""
-    au InsertLeave * silent execute "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
-    au VimLeave * silent execute  "!dconf write /org/gnome/terminal/legacy/profiles:/:42cdda23-3402-4c1d-9282-1fb1a246971e/cursor-shape \"'block'\""
   endif
 endif
 
