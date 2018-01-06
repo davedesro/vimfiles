@@ -21,9 +21,10 @@
 
 # C
 --ignore-file=is:tags
---ignore-file=is:*.d
---ignore-file=is:*.lst
---ignore-file=is:*.hex
+--ignore-file=ext:d
+--ignore-file=ext:lst
+--ignore-file=ext:hex
+--ignore-file=ext:map
 --ignore-dir=build
 
 # Simplicity Studio (SiLabs)
