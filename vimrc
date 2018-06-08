@@ -51,6 +51,7 @@ Plugin 'othree/xml.vim'
 Plugin 'python-mode/python-mode.git'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'thinca/vim-localrc'
+Plugin 'craigemery/vim-autotag'
 " if version >= 703
 "   Plugin 'Valloric/YouCompleteMe'
 " endif
@@ -103,9 +104,18 @@ set smartcase                     " ... unless they contain at least one capital
 "" Misc
 set relativenumber
 set undofile
+set tags=.tags;
 
 " Global highlighting
 highlight CursorLine cterm=NONE
+
+function! g:LRefreshTags()
+  let cwd = getcwd()
+  let cmd = "rm -f " . g:autotagTagsFile . "; ctags -R -f " . cwd . "/.tags *"
+  let resp = system(cmd)
+  return ''
+endfunction
+command! -bar -bang -nargs=* LRefreshTags :call g:LRefreshTags() | echo
 
 if has("autocmd")
 
@@ -128,6 +138,7 @@ if has("autocmd")
     \ nmap <silent> <Leader>p :cp<CR>     |
     \ nmap <silent> <Leader>c :make all V=1<CR>   |
     \ nmap <silent> <Leader>r :make install V=1<CR>   |
+    \ nmap <silent> <Leader>v :make clean && make install V=1<CR> |
     \ nmap <silent> <Leader>h :FSHere<CR> |
     \ nmap <silent> <Leader>H :FSSplitRight<CR>
   au BufEnter *.c compiler gcc
@@ -166,11 +177,6 @@ if has("autocmd")
 
   " BGS
   au BufRead,BufNewFile *.bgs set filetype=ruby
-
-  " au BufWritePost *
-  "   \ if filereadable('tags') |
-  "   \   call system('ctags -a '.expand('%')) |
-  "   \ endif
 
   autocmd QuickFixCmdPost [^l]* nested cwindow
   autocmd QuickFixCmdPost    l* nested lwindow
@@ -286,6 +292,12 @@ let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_lint_cwindow = 0
 let g:pymode_rope = 0
 let g:pymode_lint_on_write = 0
+
+" autotag
+let g:autotagTagsFile=".tags"
+let g:autotagmaxTagsFileSize="67108864"
+" To use debugging, uncomment the line below, open up vim and ':call AutoCmdDebug()'
+" let g:autotagVerbosityLevel="10"
 
 " Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
