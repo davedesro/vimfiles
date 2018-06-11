@@ -143,6 +143,9 @@ if has("autocmd")
     \ nmap <silent> <Leader>H :FSSplitRight<CR>
   au BufEnter *.c compiler gcc
 
+  au BufRead *.c,*.cpp let b:fswitchlocs = '.,../Inc'
+  au BufRead *.h,*.hpp let b:fswitchlocs = '.,../Src'
+
   au Syntax c,cpp setlocal foldmethod=syntax
   au Syntax c,cpp normal! zR
 
