@@ -102,7 +102,6 @@ set ignorecase                    " searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 
 "" Misc
-set relativenumber
 set undofile
 set tags=.tags;
 
