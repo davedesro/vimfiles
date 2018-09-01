@@ -52,6 +52,7 @@ Plugin 'python-mode/python-mode.git'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'thinca/vim-localrc'
 Plugin 'craigemery/vim-autotag'
+Plugin 'RRethy/vim-illuminate.git'
 " if version >= 703
 "   Plugin 'Valloric/YouCompleteMe'
 " endif
