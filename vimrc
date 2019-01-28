@@ -53,6 +53,8 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'thinca/vim-localrc'
 Plugin 'craigemery/vim-autotag'
 Plugin 'RRethy/vim-illuminate.git'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+
 " if version >= 703
 "   Plugin 'Valloric/YouCompleteMe'
 " endif
@@ -120,7 +122,7 @@ command! -bar -bang -nargs=* LRefreshTags :call g:LRefreshTags() | echo
 if has("autocmd")
 
   " turn syntax off for large files
-  au BufWinEnter * if line2byte(line("$") + 1) > 200000 | syntax clear | endif
+  au BufWinEnter * if line2byte(line("$") + 1) > 400000 | syntax clear | endif
 
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
