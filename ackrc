@@ -27,7 +27,6 @@
 --ignore-file=ext:hex
 --ignore-file=ext:map
 --ignore-dir=build
---ignore-dir=_build
 
 # Simplicity Studio (SiLabs)
 --ignore-dir=GNU ARM v4.8.3 - Debug

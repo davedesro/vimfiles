@@ -112,8 +112,7 @@ set tags=.tags;
 highlight CursorLine cterm=NONE
 
 function! g:LRefreshTags()
-  let cwd = getcwd()
-  let cmd = "rm -f " . g:autotagTagsFile . "; ctags -R -f " . cwd . "/.tags *"
+  let cmd = "cscope -R -b"
   let resp = system(cmd)
   return ''
 endfunction
@@ -299,13 +298,15 @@ let g:pymode_rope = 0
 let g:pymode_lint_on_write = 0
 
 " autotag
-let g:autotagTagsFile=".tags"
+let g:autotagTagsFile="cscope.out"
 let g:autotagmaxTagsFileSize="67108864"
 " To use debugging, uncomment the line below, open up vim and ':call AutoCmdDebug()'
 " let g:autotagVerbosityLevel="10"
 
 " Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
+
 
 " Taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -350,4 +351,4 @@ if has("cscope")
   endif
 endif
 set csverb
-map  <C-\>:cs find 3 <C-r>=expand("<cword>")<CR><CR>
+nnoremap  <Leader>s :cs find 3 <C-r>=expand("<cword>")<CR><CR>
