@@ -51,14 +51,9 @@ Plugin 'othree/xml.vim'
 Plugin 'python-mode/python-mode.git'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'thinca/vim-localrc'
-Plugin 'craigemery/vim-autotag'
 Plugin 'RRethy/vim-illuminate.git'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
-
-" if version >= 703
-"   Plugin 'Valloric/YouCompleteMe'
-" endif
-Plugin 'pyclewn', { 'pinned': 1 }
+Plugin 'rhysd/vim-clang-format'
 
 filetype plugin indent on
 
@@ -106,13 +101,13 @@ set smartcase                     " ... unless they contain at least one capital
 
 "" Misc
 set undofile
-set tags=.tags;
+" set tags=.tags;
 
 " Global highlighting
 highlight CursorLine cterm=NONE
 
 function! g:LRefreshTags()
-  let cmd = "cscope -R -b"
+  let cmd = "cscope -R -b -f " tags
   let resp = system(cmd)
   return ''
 endfunction
@@ -297,12 +292,6 @@ let g:pymode_lint_cwindow = 0
 let g:pymode_rope = 0
 let g:pymode_lint_on_write = 0
 
-" autotag
-let g:autotagTagsFile="cscope.out"
-let g:autotagmaxTagsFileSize="67108864"
-" To use debugging, uncomment the line below, open up vim and ':call AutoCmdDebug()'
-" let g:autotagVerbosityLevel="10"
-
 " Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
@@ -343,8 +332,8 @@ if has("cscope")
   set cst
   set nocsverb
   " add any database in current directory
-  if filereadable("cscope.out")
-    cs add cscope.out
+  if filereadable(".tags")
+    cs add .tags
     " else add database pointed to by environment
   elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
