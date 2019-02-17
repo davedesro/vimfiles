@@ -101,17 +101,16 @@ set smartcase                     " ... unless they contain at least one capital
 
 "" Misc
 set undofile
-" set tags=.tags;
 
 " Global highlighting
 highlight CursorLine cterm=NONE
 
-function! g:LRefreshTags()
-  let cmd = "cscope -R -b -f " tags
+function! g:LRefreshTags(tagfile)
+  let cmd = "rm -rf " . a:tagfile . "; cscope -R -b -f " . a:tagfile
   let resp = system(cmd)
   return ''
 endfunction
-command! -bar -bang -nargs=* LRefreshTags :call g:LRefreshTags() | echo
+command! -bar -bang -nargs=* LRefreshTags :call g:LRefreshTags(".tags") | echo
 
 if has("autocmd")
 
@@ -128,7 +127,7 @@ if has("autocmd")
   " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
 
-  au FileType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab colorcolumn=90
+  au FIleType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 expandtab colorcolumn=80
   au FileType c,cpp,make
     \ nmap <silent> <Leader>n :cn<CR>     |
     \ nmap <silent> <Leader>p :cp<CR>     |
@@ -139,8 +138,8 @@ if has("autocmd")
     \ nmap <silent> <Leader>H :FSSplitRight<CR>
   au BufEnter *.c compiler gcc
 
-  au BufRead *.c,*.cpp let b:fswitchlocs = '.,../Inc'
-  au BufRead *.h,*.hpp let b:fswitchlocs = '.,../Src'
+  au BufRead *.c,*.cpp let b:fswitchlocs = '.,../Inc,../include,../Include'
+  au BufRead *.h,*.hpp let b:fswitchlocs = '.,../Src,../source,../Source'
 
   au Syntax c,cpp setlocal foldmethod=syntax
   au Syntax c,cpp normal! zR
