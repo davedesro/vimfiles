@@ -51,9 +51,11 @@ Plugin 'othree/xml.vim'
 Plugin 'python-mode/python-mode.git'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'thinca/vim-localrc'
+Plugin 'craigemery/vim-autotag'
 Plugin 'RRethy/vim-illuminate.git'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'roxma/vim-tmux-clipboard'
 
 filetype plugin indent on
 
@@ -101,16 +103,10 @@ set smartcase                     " ... unless they contain at least one capital
 
 "" Misc
 set undofile
+set tags=.tags;
 
 " Global highlighting
 highlight CursorLine cterm=NONE
-
-function! g:LRefreshTags(tagfile)
-  let cmd = "rm -rf " . a:tagfile . "; cscope -R -b -f " . a:tagfile
-  let resp = system(cmd)
-  return ''
-endfunction
-command! -bar -bang -nargs=* LRefreshTags :call g:LRefreshTags(".tags") | echo
 
 if has("autocmd")
 
@@ -127,7 +123,7 @@ if has("autocmd")
   " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
 
-  au FIleType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 expandtab colorcolumn=80
+  au FileType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 expandtab colorcolumn=80
   au FileType c,cpp,make
     \ nmap <silent> <Leader>n :cn<CR>     |
     \ nmap <silent> <Leader>p :cp<CR>     |
@@ -138,8 +134,8 @@ if has("autocmd")
     \ nmap <silent> <Leader>H :FSSplitRight<CR>
   au BufEnter *.c compiler gcc
 
-  au BufRead *.c,*.cpp let b:fswitchlocs = '.,../Inc,../include,../Include'
-  au BufRead *.h,*.hpp let b:fswitchlocs = '.,../Src,../source,../Source'
+  au BufRead *.c,*.cpp let b:fswitchlocs = '.,../Inc,../include,../Include,../inc'
+  au BufRead *.h,*.hpp let b:fswitchlocs = '.,../Src,../source,../Source,../src'
 
   au Syntax c,cpp setlocal foldmethod=syntax
   au Syntax c,cpp normal! zR
@@ -291,10 +287,18 @@ let g:pymode_lint_cwindow = 0
 let g:pymode_rope = 0
 let g:pymode_lint_on_write = 0
 
+" autotag
+let g:autotagTagsFile=".tags"
+let g:autotagmaxTagsFileSize="67108864"
+" To use debugging, uncomment the line below, open up vim and ':call AutoCmdDebug()'
+" let g:autotagVerbosityLevel="10"
+
 " Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
 
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
 
 " Taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -331,8 +335,8 @@ if has("cscope")
   set cst
   set nocsverb
   " add any database in current directory
-  if filereadable(".tags")
-    cs add .tags
+  if filereadable("cscope.out")
+    cs add cscope.out
     " else add database pointed to by environment
   elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
