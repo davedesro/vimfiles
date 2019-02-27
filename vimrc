@@ -108,6 +108,14 @@ set tags=.tags;
 " Global highlighting
 highlight CursorLine cterm=NONE
 
+function! g:LRefreshTags()
+  let cwd = getcwd()
+  let cmd = "rm -f " . g:autotagTagsFile . "; ctags -R -f " . cwd . "/.tags *"
+  let resp = system(cmd)
+  return ''
+endfunction
+command! -bar -bang -nargs=* LRefreshTags :call g:LRefreshTags() | echo
+
 if has("autocmd")
 
   " turn syntax off for large files
