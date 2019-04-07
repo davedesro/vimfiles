@@ -38,7 +38,7 @@ Plugin 'vim-scripts/matchit.zip.git'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'sickill/vim-pasta.git'
-Plugin 'flazz/vim-colorschemes.git'
+" Plugin 'flazz/vim-colorschemes.git'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'vim-scripts/taglist.vim.git'
 Plugin '4Evergreen4/vim-hardy'
@@ -56,11 +56,15 @@ Plugin 'RRethy/vim-illuminate.git'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'roxma/vim-tmux-clipboard'
+Plugin 'skywind3000/asyncrun.vim'
+Plugin 'rakr/vim-one.git'
 
 filetype plugin indent on
 
+colorscheme one
 set background=dark
-color mrkn256
+" let g:one_allow_italics=1
+
 set number
 set ruler       " show the cursor position all the time
 set cursorline
