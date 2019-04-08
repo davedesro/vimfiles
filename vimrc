@@ -58,12 +58,25 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'roxma/vim-tmux-clipboard'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'rakr/vim-one.git'
+Plugin 'vim-airline/vim-airline.git'
+Plugin 'vim-airline/vim-airline-themes.git'
 
 filetype plugin indent on
 
 colorscheme one
+" colorscheme mrkn256
 set background=dark
 " let g:one_allow_italics=1
+if has("gui_running")
+  let g:airline_theme='one'
+else
+  let g:airline_theme='onedark'
+  call one#highlight('PMenuSel',   '000000', 'd19a66', '')
+  call one#highlight('CursorLine', '',       '2a2a2a', '')
+  call one#highlight('Folded',     'ffff00', '000000', '')
+  call one#highlight('ColorColumn', '',      'be5046', '')
+  call one#highlight('StatusLine', '',       '686868', '')
+endif
 
 set number
 set ruler       " show the cursor position all the time
@@ -260,23 +273,6 @@ set backupdir=~/.vim/_backup    " where to put backup files.
 set directory=~/.vim/_temp      " where to put swap files.
 set undodir=~/.vim/_undo        " where to put undo files.
 
-if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
-
-  set statusline=%f\ \ \ %m
-  " Add fugitive
-  set statusline+=\ \ \ %{fugitive#statusline()}
-
-  " Go to right side
-  set statusline+=%=
-
-  " Set Line number
-  set statusline+=L:%l\ (%p%%),\ C:%c
-
-  " [RO] marker
-  set statusline+=\ %r
-endif
-
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=4
 let g:CommandTTraverseSCM='pwd'
@@ -356,3 +352,7 @@ if has("cscope")
 endif
 set csverb
 nnoremap  <Leader>s :cs find 3 <C-r>=expand("<cword>")<CR><CR>
+
+if v:version > 801 || v:version == 801
+  packadd termdebug
+endif
