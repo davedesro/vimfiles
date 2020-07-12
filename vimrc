@@ -96,7 +96,7 @@ set autoread
 set nowrap                        " don't wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
-set expandtab                     " use spaces, not tabs
+set noexpandtab                   " use tabs by default, not spaces
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
 " Joining lines
@@ -141,6 +141,9 @@ if has("autocmd")
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
 
+  " For DTS files used for DTB, use real tabs
+  au FileType dts set noexpandtab
+
   " Make sure all markdown files have the correct filetype set and setup wrapping
   au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown |
         \ set wrap wrapmargin=2 textwidth=80
@@ -149,12 +152,14 @@ if has("autocmd")
   au BufNewFile,BufRead *.json set ft=javascript
 
   au FileType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 expandtab colorcolumn=80
-  au FileType c,cpp,make
+  au FileType c,cpp,make,dts
     \ nmap <silent> <Leader>n :cn<CR>     |
     \ nmap <silent> <Leader>p :cp<CR>     |
     \ nmap <silent> <Leader>c :make all V=1<CR>   |
     \ nmap <silent> <Leader>r :make install V=1<CR>   |
     \ nmap <silent> <Leader>v :make clean && make install V=1<CR> |
+    \ nmap <silent> <Leader>w :let resp = system(~/.local/bin/west build -p auto)<CR> |
+    \ nmap <silent> <Leader>F :let resp = system(~/.local/bin/west flash --flash-opt="-e=chip")<CR> |
     \ nmap <silent> <Leader>h :FSHere<CR> |
     \ nmap <silent> <Leader>H :FSSplitRight<CR>
   au BufEnter *.c compiler gcc
