@@ -302,7 +302,7 @@ let g:pymode_lint_on_write = 0
 
 " autotag
 let g:autotagTagsFile=".tags"
-let g:autotagmaxTagsFileSize="67108864"
+let g:autotagmaxTagsFileSize="100000000"
 " To use debugging, uncomment the line below, open up vim and ':call AutoCmdDebug()'
 " let g:autotagVerbosityLevel="10"
 
