@@ -51,7 +51,7 @@ Plugin 'othree/xml.vim'
 Plugin 'python-mode/python-mode.git'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'thinca/vim-localrc'
-Plugin 'craigemery/vim-autotag'
+" Plugin 'craigemery/vim-autotag'
 Plugin 'RRethy/vim-illuminate.git'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'rhysd/vim-clang-format'
@@ -135,11 +135,14 @@ command! -bar -bang -nargs=* LRefreshTags :call g:LRefreshTags() | echo
 
 if has("autocmd")
 
+	au BufRead,BufNewFile *.dts,*.dtsi,*.overlay set filetype=dts
+
   " turn syntax off for large files
   au BufWinEnter * if line2byte(line("$") + 1) > 400000 | syntax clear | endif
 
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
+	au FileTYpe c set ts=4 sw=4 softtabstop=4 expandtab colorcolumn=80
 
   " For DTS files used for DTB, use real tabs
   au FileType dts set noexpandtab
@@ -151,8 +154,7 @@ if has("autocmd")
   " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
 
-  au FileType c,cpp set tabstop=4 shiftwidth=4 softtabstop=4 expandtab colorcolumn=80
-  au FileType c,cpp,make,dts
+  au FileType c,cpp,make
     \ nmap <silent> <Leader>n :cn<CR>     |
     \ nmap <silent> <Leader>p :cp<CR>     |
     \ nmap <silent> <Leader>c :make all V=1<CR>   |

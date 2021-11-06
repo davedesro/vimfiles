@@ -23,6 +23,7 @@
 --ignore-file=is:tags
 --ignore-file=is:.tags
 --ignore-file=ext:d
+--ignore-file=ext:su
 --ignore-file=ext:lst
 --ignore-file=ext:hex
 --ignore-file=ext:map
