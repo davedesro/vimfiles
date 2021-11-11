@@ -1,6 +1,5 @@
 # Requirements:
 #  - ctags
-#  - vim with ruby support for Command-T
 #  - vim version 7.3.584+ needed for YouCompleteMe
 #  - Get latest vundle here: git@github.com:gmarik/vundle.git
 #    and place it  vimfiles/bundle/
@@ -8,7 +7,7 @@
 #      - link .vim properly
 #      - git clone Vundle.vim, rename and move to bundle/vundle
 
-task :default => [:link, :tmp_dirs, :update, :command_t, :youcompleteme, :pyclewn]
+task :default => [:link, :tmp_dirs, :update, :youcompleteme, :pyclewn]
 
 desc %(Update or create bundles in the bundle/ directory)
 task :update do
@@ -61,22 +60,6 @@ task :youcompleteme => :macvim_check do
   Dir.chdir "bundle/YouCompleteMe" do
     puts "Compiling YouCompleteMe plugin..."
     sh "./install.sh --clang-completer"
-  end
-end
-
-desc %(Compile Command-T plugin)
-task :command_t => :macvim_check do
-  vim = which('mvim') || which('vim') or abort "vim not found on your system"
-  ruby = read_ruby_version(vim)
-
-  Dir.chdir "bundle/Command-T" do
-    if ruby
-      puts "Compiling Command-T plugin..."
-      sh "rake clean && rake make"
-    else
-      warn color('Warning:', 31) + " Can't compile Command-T, no ruby support in #{vim}"
-      sh "make clean"
-    end
   end
 end
 
