@@ -249,7 +249,8 @@ let mapleader=","
 nmap <leader>p pV`]=
 nmap <leader>P PV`]=
 
-" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" :FZF only works if you have /usr/share/vim/vimfiles/plugins/fzf.vim from
+" here https://github.com/junegunn/fzf/tree/master/plugin
 map <leader>f :FZF<cr>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
