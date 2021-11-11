@@ -28,7 +28,7 @@ Plugin 'VundleVim/Vundle.vim'
 " My bundles
 "
 Plugin 'mileszs/ack.vim'
-Plugin 'wincent/Command-T'
+" Plugin 'wincent/Command-T'
 Plugin 'Raimondi/delimitMate.git'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
@@ -41,7 +41,6 @@ Plugin 'sickill/vim-pasta.git'
 " Plugin 'flazz/vim-colorschemes.git'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'vim-scripts/taglist.vim.git'
-Plugin '4Evergreen4/vim-hardy'
 Plugin 'vim-scripts/ZoomWin.git'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'pangloss/vim-javascript.git'
@@ -60,8 +59,16 @@ Plugin 'skywind3000/asyncrun.vim'
 Plugin 'rakr/vim-one.git'
 Plugin 'vim-airline/vim-airline.git'
 Plugin 'vim-airline/vim-airline-themes.git'
+Plugin 'preservim/vimux'
+" Plugin 'tomasr/molokai.git'
+" Plugin 'sonph/onehalf.git'
+" Plugin 'gosukiwi/vim-atom-dark.git'
+" Plugin 'sjl/badwolf.git'
 
 filetype plugin indent on
+
+" colorscheme onehalfdark
+" let g:airline_theme='onehalflight'
 
 colorscheme one
 " colorscheme mrkn256
@@ -242,7 +249,8 @@ let mapleader=","
 nmap <leader>p pV`]=
 nmap <leader>P PV`]=
 
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>f :FZF<cr>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
@@ -314,6 +322,9 @@ let g:gundo_prefer_python3 = 1
 
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
+let g:tmux_navigator_preserve_zoom = 1
+
+let g:ackprg = 'ag --vimgrep -U'
 
 " Taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
