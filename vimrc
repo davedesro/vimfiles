@@ -64,6 +64,8 @@ Plugin 'preservim/vimux'
 " Plugin 'sonph/onehalf.git'
 " Plugin 'gosukiwi/vim-atom-dark.git'
 " Plugin 'sjl/badwolf.git'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 filetype plugin indent on
 
@@ -252,6 +254,7 @@ nmap <leader>P PV`]=
 " :FZF only works if you have /usr/share/vim/vimfiles/plugins/fzf.vim from
 " here https://github.com/junegunn/fzf/tree/master/plugin
 map <leader>f :FZF<cr>
+map <leader>b :Buffers<cr>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
