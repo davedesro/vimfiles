@@ -66,6 +66,7 @@ Plugin 'preservim/vimux'
 " Plugin 'sjl/badwolf.git'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'udalov/kotlin-vim'
 
 filetype plugin indent on
 
