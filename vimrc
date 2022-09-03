@@ -87,6 +87,14 @@ else
   call one#highlight('ColorColumn', '',      'be5046', '')
   call one#highlight('StatusLine', '',       '686868', '')
 endif
+"let g:airline_experimental=1
+let g:airline_section_c_only_filename=1
+let g:airline_stl_path_style='short'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#taglist#enabled=0
+let g:airline#extensions#whitespace#mixed_indent_format='[%s]mi'
+let g:airline#extensions#whitespace#symbol=''
+let g:airline_section_z=airline#section#create(['%p%%', 'maxlinenr', 'colnr'])
 
 set number
 set ruler       " show the cursor position all the time
@@ -152,7 +160,7 @@ if has("autocmd")
 
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
-	au FileTYpe c set ts=4 sw=4 softtabstop=4 expandtab colorcolumn=80
+	au FileTYpe c set nowrap ts=4 sw=4 softtabstop=4 expandtab colorcolumn=80
 
   " For DTS files used for DTB, use real tabs
   au FileType dts set noexpandtab
