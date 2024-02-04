@@ -160,9 +160,9 @@ set autoread
 
 "" Whitespace
 set nowrap                        " don't wrap lines
-set tabstop=2                     " a tab is two spaces
-set shiftwidth=2                  " an autoindent (with <<) is two spaces
-set noexpandtab                   " use tabs by default, not spaces
+set tabstop=4                     " a tab is two spaces
+set shiftwidth=4                  " an autoindent (with <<) is two spaces
+set expandtab                     " use spaces by default, not tabs
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
 " Joining lines
@@ -208,7 +208,7 @@ if has("autocmd")
 
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
-	au FileTYpe c set nowrap ts=4 sw=4 softtabstop=4 expandtab colorcolumn=80
+  au FileType c set nowrap ts=4 sw=4 softtabstop=4 expandtab colorcolumn=80
 
   " For DTS files used for DTB, use real tabs
   au FileType dts set noexpandtab
@@ -217,8 +217,8 @@ if has("autocmd")
   au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown |
         \ set wrap wrapmargin=2 textwidth=80
 
-  " Treat JSON files like JavaScript
-  au BufNewFile,BufRead *.json set ft=javascript
+  au FileType json set expandtab
+  au Syntax json setlocal foldmethod=syntax
 
   au FileType c,cpp,make
     \ nmap <silent> <Leader>n :cn<CR>     |

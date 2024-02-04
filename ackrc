@@ -10,9 +10,11 @@
 --ignore-file=ext:d
 --ignore-file=ext:su
 --ignore-file=ext:lst
+--ignore-file=ext:list
 --ignore-file=ext:hex
 --ignore-file=ext:map
 --ignore-dir=build
+--ignore-dir=cmake_build
 
 # Python venv
 --ignore-dir=is:.venv

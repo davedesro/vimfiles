@@ -1,13 +1,12 @@
 # Requirements:
 #  - ctags
-#  - vim version 7.3.584+ needed for YouCompleteMe
 #  - Get latest vundle here: git@github.com:gmarik/vundle.git
 #    and place it  vimfiles/bundle/
 #    TODO:
 #      - link .vim properly
 #      - git clone Vundle.vim, rename and move to bundle/vundle
 
-task :default => [:link, :tmp_dirs, :update, :youcompleteme, :pyclewn]
+task :default => [:link, :tmp_dirs, :update]
 
 desc %(Update or create bundles in the bundle/ directory)
 task :update do
@@ -29,38 +28,6 @@ end
 task :tmp_dirs do
   mkdir_p "_backup"
   mkdir_p "_temp"
-end
-
-desc %(Fetch and Compile pyclewn plugin)
-task :pyclewn => :macvim_check do
-  vim                  = which('mvim') || which('vim') or abort "vim not found on your system"
-  python               = read_python_version(vim)
-  pyclewn_version      = "pyclewn-1.11.py2"
-  pyclewn_install_file = "#{pyclewn_version}.tar.gz"
-  pyclewn_path         = 'bundle/pyclewn'
-
-  if python
-    puts "Fetching #{pyclewn_install_file}..."
-    Dir.chdir 'tmp' do
-      sh "wget 'http://sourceforge.net/projects/pyclewn/files/latest/download?source=files' -O #{pyclewn_install_file}"
-      sh "tar -xvzf #{pyclewn_install_file}"
-      Dir.chdir pyclewn_version do
-        puts "Installing #{pyclewn_version}..."
-        # sh "vimdir=$HOME/.vim/#{pyclewn_path} python setup.py install --force"
-        sh "sudo python setup.py install --force"
-      end
-    end
-  else
-    warn color('Warning:', 31) + " Can't install pyclewn, no python support in #{vim}"
-  end
-end
-
-desc %(Compile YouCompleteMe plugin)
-task :youcompleteme => :macvim_check do
-  Dir.chdir "bundle/YouCompleteMe" do
-    puts "Compiling YouCompleteMe plugin..."
-    sh "./install.sh --clang-completer"
-  end
 end
 
 task :macvim_check do
