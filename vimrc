@@ -14,7 +14,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
-
 " This must be set before the XML plugin is loaded
 if has("autocmd")
   au FileType xml,html
@@ -245,7 +244,7 @@ if has("autocmd")
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 
-  au FileType coffee,rexx :setlocal foldmethod=indent
+  au FileType coffee,rexx,python :setlocal foldmethod=indent
 
   au FileType xml
     \ set noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 |
@@ -369,6 +368,9 @@ let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_lint_cwindow = 0
 let g:pymode_rope = 0
 let g:pymode_lint_on_write = 0
+let g:pymode_folding = 0
+let g:pymode_indent = 1
+let g:pymode_lint = 0
 
 " autotag
 let g:autotagTagsFile=".tags"
@@ -434,3 +436,4 @@ nnoremap  <Leader>s :cs find 3 <C-r>=expand("<cword>")<CR><CR>
 if v:version > 801 || v:version == 801
   packadd termdebug
 endif
+
